@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Skinclassinator</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="description" content="Skinclassinator" />
+	<meta name="author" content="Antigua" />
+	<meta property="og:title" content="darkmatter" />
+  	<meta property="og:description" content="" />
+  	<meta property="og:type" content="website, machine learning, project" />
+  	<meta property="og:image" content="{{ url_for('static',filename='images/rick.gif') }}" />
+  	<meta property="og:site_name" content=skinclassinator />
+  	<meta property="og:url" content="https://antiguadominic.com/" />
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/bootstrap.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400&display=swap" rel="stylesheet">
+	<!-- Scripts -->
+	<script type="text/javascript" src="{{ url_for('static',filename='js/jquery.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='js/bootstrap.bundle.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static',filename='js/main.js') }}"></script>
+	<script src="https://kit.fontawesome.com/1f4f02a0a7.js" crossorigin="anonymous"></script> 
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-success navbar-expand-lg fixed-top px-5">
+	    <a class="navbar-brand" href="/">
+	        <h3>Skinclassinator</h3>
+	    </a>
+    	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-2" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        	<span class="navbar-toggler-icon"></span>
+    	</button>
+    	<div class="collapse navbar-collapse d-xl-flex justify-content-xl-end" id="navbar-list-2">
+       		<ul class="navbar-nav">
+	            <li class="nav-item mx-4">
+					<a href="#" class="section-link text-uppercase small nav-link active text-center">home</a>
+				</li>
+				<li class="nav-item mx-4">
+					<a href="#" class="section-link text-uppercase small nav-link text-center">motivation</a>
+				</li>
+				<li class="nav-item mx-4">
+					<a href="#" class="section-link text-uppercase small nav-link text-center">analyze</a>
+				</li>
+                <li class="nav-item mx-4">
+					<a href="#" class="section-link text-uppercase small nav-link text-center">contact</a>
+				</li>
+        	</ul>
+    	</div>
+	</nav>
+	<!---->
+	<section id="home" class="my-auto mx-auto">
+		<div class="container h-100">
+			<div class="row align-items-center h-100 ">
+				<div class="col-12 mx-auto text-center">
+					<img src="{{ url_for('static',filename='images/media.png') }}" width="180" height="180">
+					<h1 class="display-3 font-weight-bolder intro-text text-warning text-uppercase mt-3 mb-header">What is Skinclassinator?</h1>
+					<p class="text-white h5 mb-headerdesc">
+						This project detects and classify the skin diseases with the use of Convolutional Neural Network (CNN).
+						It detects and classify the skin diseases if it's Melanoma, Melanocytic Nevi, Benign Keratosis, Basal Cell Carcinoma, Actinic Keratosis, Vascular Skin Lessions or Dermatofibroma.
+						This system aims to quickly identify the three highest probability diagnoses for a given input of skin diseases.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="motivation" class="mb-5 py-5">
+		<div class="container">
+			<h2 class="text-center text-uppercase">Motivation</h2>
+			<div class="row d-flex justify-content-center mt-5">
+				<div class="col-lg-3 col-sm-12 text-center p-5 shadow-lg mr-lg-5 mb-3">
+					<img class="mb-3" src="{{ url_for('static',filename='images/cancer.png') }}" width="100">
+					<h3>Melanoma</h3>
+					<p class="text-left">It is less common than some other types of skin cancers. But melanoma is more dangerous because it's much more likely to spread to other parts of the body if not caught and treated early.</p>
+				</div>
+				<div class="col-lg-3 col-sm-12 text-center p-5 shadow-lg mr-lg-5 mb-3">
+					<img class="mb-3" src="{{ url_for('static',filename='images/pie-chart.png') }}" width="100">
+					<h3>Statistics</h3>
+					<p class="text-left">It is the third most common skin cancer in the Philippines. As stated by ManilaMed, approx. 1 out of 50 men and women who will be diagnosed with Melanoma during their lifetime</p>
+				</div>
+				<div class="col-lg-3 col-sm-12 text-center p-5 shadow-lg mr-lg-5 mb-3">
+					<img class="mb-3" src="{{ url_for('static',filename='images/survival.png') }}" width="100">
+					<h3>Death Rate</h3>
+					<p class="text-left">According to the latest WHO data published in 2020 Skin Cancers Deaths in Philippines reached 368 or 0.05% of total deaths. The age adjusted Death Rate is 0.52 per 100,000 of population ranks Philippines #161 in the world.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="analyze" class="bg-danger mb-5 py-5">
+		{% if scroll %}
+		<script>
+          document.location.hash = '#' + '{{ scroll }}';
+		</script>
+		{% endif %}
+		<div class="container p-5 text-white">
+			<h2 class="text-center text-uppercase">Upload Image to Analyze</h2>
+			<div class="container">
+				<div class="row d-flex justify-content-center mt-5">
+					<div class="col-lg-6 px-5 my-auto">
+						<form method=post enctype=multipart/form-data action='/upload'>
+							<div class="input-group mb-3">
+								<div class="input-group-prepend">
+								  <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+								</div>
+								<div class="custom-file">
+								  <input type="file" name='file' class="custom-file-input" id="image_upload" aria-describedby="inputGroupFileAddon01" required>
+								  <label class="custom-file-label" for="image_upload">Choose file</label>
+								</div>
+							  </div>
+							  <h6 class=""><b><label>Note:</label></b>
+								<ul>
+								<li>Only accepted image file types: <b><label class="text-warning">png, jpg, jpeg</label></b></li>
+								<li>Blurry images can cause wrong results</li>
+								<li>Should not be taken as an absolute truth</li>
+								</ul>
+							</h6>
+							<input type="submit" value="Analyze" class="col-sm-12 mt-2 btn btn-warning">
+						</form>
+					</div>
+					{% if image and data %}
+				  	<div class="col-lg-6 col-sm-12 text-center mb-line mt-5">
+						<div class="container mt-4">
+					  		<h3 class="text-warning">Analysis Result: </h3>
+							<div class="row  my-4">
+								<div class="col-sm-5 col-12 mb-3">
+					  				<img src="{{ image }}" alt="Mole Image" class="img-thumbnail img-responsive" width="220" height="220">
+								</div>
+								<div class="col-sm-7 my-auto mb-predict">
+									<div class="mb-2 col-12 ">
+										<a href="https://www.webmd.com/search/search_results/default.aspx?query={{data.class1}}" target="_blank" class="btn btn-sm btn-warning text-uppercase"><b>{{ data.class1 }}</b> : {{data.prob1}}%</a>
+									</div>
+									<div class="mb-2 col-12">
+										<a href="https://www.webmd.com/search/search_results/default.aspx?query={{data.class2}}" target="_blank" class="btn btn-sm btn-info text-uppercase"><b>{{ data.class2 }}</b> : {{data.prob2}}%</a>
+									</div>
+									<div class="mb-2 col-12">
+										<a href="https://www.webmd.com/search/search_results/default.aspx?query={{data.class3}}" target="_blank" class="btn btn-sm btn-success text-uppercase"><b>{{ data.class3 }}</b> : {{data.prob3}}%</a>
+									</div>
+								</div>
+							</div>
+						</div>
+				  </div>
+				  {% endif %}
+			</div>
+		</div>
+	</section>
+	<section id="contact" class="pb-5">
+		<div class="container text-center">
+			<h2 class="text-center text-uppercase text-dark">Contact Us</h2>
+			<div class="mt-2">
+				<div class="row">
+					<div class="col-lg-3 col-12 mt-5">
+						<img src="{{ url_for('static',filename='images/doof-anime.gif') }}" class="img-circle" width="170" height="160">
+						<h4 class="text-center mt-3">Dominic Antigua</h4>
+						<h6 class="text-danger">Team Leader</h6> 
+						<h6 class="team-position">Core Dev</h6> 
+						<div class="text-center text-white">
+							<ul class="list-unstyled list-inline">
+								<li class="list-inline-item"><a href="https://www.facebook.com/dominicantiguaguinto" target="_blank" class="text-white"><i class="fab fa-facebook-f text-dark" aria-hidden="true"></i></a></li>
+								<li class="list-inline-item"><a href="https://www.linkedin.com/in/dominicantigua/" target="_blank" class="text-white"><i class="fab fa-linkedin text-dark" aria-hidden="true"></i></a></li>
+								<li class="list-inline-item"><a href="https://github.com/Dark-Matterr" target="_blank" class="text-white"><i class="fab fa-github text-dark" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-3 col-12 mt-5">
+						<img src="{{ url_for('static',filename='images/perry.gif') }}" class="img-circle" width="170" height="160">
+						<h4 class="text-center mt-3">Philip Perucho</h4>
+						<h6 class="text-danger">Project Manager</h6> 
+						<h6 class="team-position">Core Dev</h6> 
+						<div class="text-center text-white">
+							<ul class="list-unstyled list-inline">
+								<li class="list-inline-item"><a href="https://www.facebook.com/Phroy20" target="_blank" class="text-white"><i class="fab fa-facebook-f text-dark" aria-hidden="true"></i></a></li>
+								<li class="list-inline-item"><a href="https://www.linkedin.com/in/philip-perucho-2345b61a7/" target="_blank" class="text-white"><i class="fab fa-linkedin text-dark" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-3 col-12 mt-5">
+						<img src="{{ url_for('static',filename='images/rick.gif') }}" class="img-circle" width="170" height="160">
+						<h4 class="text-center mt-3">Kervy Mestiola</h4>
+						<h6 class="text-danger">System Tester</h6> 
+						<h6 class="team-position">Documentation</h6> 
+						<div class="text-center text-white">
+							<ul class="list-unstyled list-inline">
+								<li class="list-inline-item"><a href="https://www.facebook.com/kjm.sapde" target="_blank" class="text-white"><i class="fab fa-facebook-f text-dark" aria-hidden="true"></i></a></li>
+								<li class="list-inline-item"><a href="https://www.linkedin.com/in/kervy-mestiola-a65b701b8/" target="_blank" class="text-white"><i class="fab fa-linkedin text-dark" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-3 col-12 mt-5">
+						<img src="{{ url_for('static',filename='images/morty.gif') }}" class="img-circle" width="170" height="160">
+						<h4 class="text-center mt-3">Renz Torres</h4>
+						<h6 class="text-danger">Documentation Maintainer</h6> 
+						<h6 class="team-position">Documentation</h6> 
+						<div class="text-center text-white">
+							<ul class="list-unstyled list-inline">
+								<li class="list-inline-item"><a href="https://www.facebook.com/profile.php?id=100002787935084" target="_blank" class="text-white"><i class="fab fa-facebook-f text-dark" aria-hidden="true"></i></a></li>
+								<li class="list-inline-item"><a href="https://www.linkedin.com/in/renz-victor-torres-776576206/" target="_blank" class="text-white"><i class="fab fa-linkedin text-dark" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer class="page-footer text-white bg-dark p-4">
+		<div class="footer-copyright text-center py-1">Copyright 2022 TeamSpectra | All Rights Reserved | </div>
+	</footer>
+</body>
+</html>
