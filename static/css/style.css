@@ -1,0 +1,48 @@
+/*navbar section*/
+.intro-text{
+	font-family: 'Signika Negative', sans-serif;
+}
+#home{
+ background-color: #4b2560;
+  height: 45em;
+}
+
+.img-circle{
+  border-radius: 50%;
+}
+.team-position{
+  color:#937C9F;
+}
+
+/* Mobile quieries*/
+@media screen and (max-width: 991px) and (min-width: 308px) {
+  .header-function{
+   display: none;
+ }
+ .mb-header{
+    font-size: 2em;
+  }
+  .mb-headerdesc{
+    font-size: 1.2em;
+  }
+
+  .mb-line{
+    border-top-style: solid;
+    border-top-color: white;
+    width: 100em;
+  }
+  .mb-predict{
+    text-align: center;
+  }
+}
+/* Desktop quieries*/
+@media only screen and (min-width: 991px) {
+  .mb-line{
+    border-left-style: solid;
+    border-left-color: white;
+    width: 100em;
+  }
+  .mb-predict{
+    text-align: left;
+  }
+}
